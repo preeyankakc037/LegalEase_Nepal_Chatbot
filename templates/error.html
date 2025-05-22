@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Error - LEGALEASE NEPAL{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h2 class="text-center mb-0">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Error
+                </h2>
+            </div>
+            <div class="card-body text-center">
+                <h3>Something went wrong</h3>
+                <p class="lead">Status Code: {{ status_code }}</p>
+                <p>{{ error_message }}</p>
+                <div class="mt-4">
+                    <a href="/" class="btn btn-primary">
+                        <i class="bi bi-house-door me-2"></i>Return to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

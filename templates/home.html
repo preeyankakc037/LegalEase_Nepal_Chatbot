@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Home - LEGALEASE NEPAL{% endblock %}
+
+{% block content %}
+<div class="row align-items-center">
+    <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">Your AI Legal Assistant</h1>
+        <p class="lead">Get instant answers to your legal questions with our advanced AI-powered legal chatbot.</p>
+        <p>Our chatbot provides information on various legal topics including contracts, lawsuits, legal procedures, and more.</p>
+        
+        {% if user %}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/chatbot" class="btn btn-primary btn-lg px-4 me-md-2">
+                <i class="bi bi-chat-dots me-2"></i>Start Chatting
+            </a>
+            <a href="/profile" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-person me-2"></i>View Profile
+            </a>
+        </div>
+        {% else %}
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/login" class="btn btn-primary btn-lg px-4 me-md-2">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Login
+            </a>
+            <a href="/signup" class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-person-plus me-2"></i>Sign Up
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" class="img-fluid rounded shadow-lg" alt="Legal scales">
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h2 class="mb-4">How It Works</h2>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-person-plus-fill text-primary" style="font-size: 3rem;"></i>
+                </div>
+                <h3 class="card-title">1. Create an Account</h3>
+                <p class="card-text">Sign up for a free account to access our legal chatbot and save your chat history.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-chat-text-fill text-primary" style="font-size: 3rem;"></i>
+                </div>
+                <h3 class="card-title">2. Ask Your Question</h3>
+                <p class="card-text">Type your legal question in natural language and get an instant response.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <i class="bi bi-journal-text text-primary" style="font-size: 3rem;"></i>
+                </div>
+                <h3 class="card-title">3. Review & Save</h3>
+                <p class="card-text">Review your answers, see sources, and access your chat history anytime.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
