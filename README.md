@@ -44,7 +44,7 @@ Run the Application:Start the web server to launch the chatbot:
 python main.py
 
 
-Access the Chatbot:Open a web browser and navigate to http://localhost:5000 (or the port specified in main.py).
+Access the Chatbot:Open a web browser and navigate to http://localhost:8000 (or the port specified in main.py).
 
 
 Usage
