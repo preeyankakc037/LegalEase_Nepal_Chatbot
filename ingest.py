@@ -7,7 +7,7 @@ from langchain_community.vectorstores import FAISS
 import pickle
 
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = ""
 
 
 DOCS_DIR = r"C:\Users\kgu95\Desktop\RAG\legal_docs"  # absolute path to directory
