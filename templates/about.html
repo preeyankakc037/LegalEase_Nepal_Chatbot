@@ -1,53 +1,853 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About - LegalEase Nepal | AI Legal Assistant</title>
+<style>
+    :root {
+        --primary: #2563eb;  /* Updated blue color from screenshot */
+        --primary-dark: #1d4ed8;
+        --secondary: #10b981; /* Emerald */
+        --accent: #f59e0b;   /* Amber */
+        --light: #f8fafc;
+        --dark: #1e293b;
+        --text: #334155;
+        --card-bg: #ffffff;
+    }
 
-{% block title %}About - LEGALEASE NEPAL{% endblock %}
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-{% block content %}
-<div class="row">
-    <div class="col-lg-8 offset-lg-2">
-        <div class="card">
-            <div class="card-body">
-                <h1 class="card-title text-center mb-4">About Our Legal Chatbot</h1>
-                
-                <h3>What We Offer</h3>
-                <p>
-                    Our Legal Chatbot is an AI-powered assistant designed to provide general information about legal topics. 
-                    It can help you understand basic legal concepts, terminology, and procedures.
-                </p>
-                
-                <h3>How It Works</h3>
-                <p>
-                    The chatbot uses advanced natural language processing to understand your questions and provide relevant information.
-                    It has been trained on a wide range of legal documents and resources to give you accurate and helpful responses.
-                </p>
-                
-                <div class="alert alert-warning">
-                    <h4 class="alert-heading"><i class="bi bi-exclamation-triangle me-2"></i>Important Disclaimer</h4>
-                    <p>
-                        The information provided by this chatbot is for general informational purposes only and is not intended to be legal advice.
-                        The chatbot cannot replace the expertise of a qualified legal professional.
-                    </p>
-                    <p class="mb-0">
-                        For specific legal issues, please consult with a licensed attorney in your jurisdiction.
-                    </p>
+    body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: #f1f5f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+        background-color: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-logo img {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .navbar-logo-text {
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+
+    .navbar-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .navbar-links a {
+        color: var(--dark);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        position: relative;
+    }
+
+    .navbar-links a:hover {
+        color: var(--primary);
+    }
+
+    .navbar-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary);
+        transition: width 0.3s;
+    }
+
+    .navbar-links a:hover::after {
+        width: 100%;
+    }
+
+    .navbar-buttons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark);
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-links, .navbar-buttons {
+            display: none;
+        }
+        
+        .mobile-menu-btn {
+            display: block;
+        }
+        
+        .navbar-container {
+            padding: 1rem;
+        }
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header Styles */
+    .hero {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        padding: 80px 0 60px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 60px;
+    }
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+        opacity: 0.4;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        width: 120px;
+        margin-bottom: 20px;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.8);
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin: 0 0 20px;
+        line-height: 1.2;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        margin-bottom: 30px;
+    }
+
+    /* Section Styles */
+    .section {
+        margin-bottom: 80px;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+        font-size: 2.2rem;
+        color: var(--dark);
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-header h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+    }
+
+    .section-header p {
+        color: var(--text);
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+    }
+
+    /* Card Layout */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Card Styles */
+    .card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-primary {
+        border-top: 4px solid var(--primary);
+    }
+
+    .card-secondary {
+        border-top: 4px solid var(--secondary);
+    }
+
+    .card-accent {
+        border-top: 4px solid var(--accent);
+    }
+
+    .card-content {
+        padding: 30px;
+    }
+
+    .card h3 {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .card p, .card li {
+        color: var(--text);
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .card ul {
+        padding-left: 20px;
+    }
+
+    .card li {
+        margin-bottom: 8px;
+        position: relative;
+    }
+
+    .card li::before {
+        content: "•";
+        color: var(--primary);
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+
+    .card a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    .card a:hover {
+        color: var(--primary-dark);
+        text-decoration: underline;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    /* Feature Highlights */
+    .feature-highlight {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .feature-highlight {
+            flex-direction: column;
+        }
+    }
+
+    .feature-image {
+        flex: 1;
+        min-height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .feature-content {
+        flex: 1;
+        padding: 40px;
+    }
+
+    .feature-content h3 {
+        font-size: 1.8rem;
+        color: var(--dark);
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    /* Team Section */
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .team-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+    }
+
+    .team-photo {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .team-info {
+        padding: 25px 20px;
+    }
+
+    .team-info h4 {
+        margin: 0 0 5px;
+        font-size: 1.3rem;
+        color: var(--dark);
+    }
+
+    .team-info p {
+        color: var(--text);
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-block;
+        background-color: var(--primary);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .btn:hover {
+        background-color: var(--primary-dark);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+    }
+
+    .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+    }
+
+    /* Footer */
+    .footer {
+        background: var(--dark);
+        color: white;
+        padding: 60px 0 30px;
+        margin-top: 80px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+
+    .footer-column h4 {
+        font-size: 1.2rem;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 10px;
+    }
+
+    .footer-links a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+        color: white;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #334155;
+    }
+
+    .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-links a {
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        h1 {
+            font-size: 2.2rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            padding: 60px 0 40px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .section-header h2 {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero {
+            padding: 50px 0 30px;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+    }
+
+    /* Utility Classes */
+    .text-center {
+        text-align: center;
+    }
+
+    .mt-0 { margin-top: 0; }
+    .mb-0 { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-logo">
+            <img src="https://via.placeholder.com/40x40?text=LE" alt="LegalEase Logo">
+            <span class="navbar-logo-text">LegalEase Nepal</span>
+        </div>
+        
+        <div class="navbar-links">
+            <a href="#about">About</a>
+            <a href="#solution">Solution</a>
+            <a href="#technology">Technology</a>
+            <a href="#impact">Impact</a>
+            <a href="#team">Team</a>
+        </div>
+        
+        <div class="navbar-buttons">
+            <a href="#" class="btn btn-outline">Login</a>
+            <a href="#" class="btn">Sign Up</a>
+        </div>
+        
+        <button class="mobile-menu-btn">☰</button>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-content container">
+        <img src="https://via.placeholder.com/120x60?text=LegalEase+Logo" alt="LegalEase Nepal Logo" class="logo">
+        <div class="tagline">AI-Powered Legal Assistance</div>
+        <h1>Democratizing Legal Access in Nepal</h1>
+        <p>LegalEase Nepal provides affordable, AI-powered legal guidance to small businesses and freelancers, helping them navigate legal processes with confidence.</p>
+        <a href="#solution" class="btn">Explore Our Solution</a>
+    </div>
+</header>
+
+<main class="container">
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2>About LegalEase Nepal</h2>
+            <p>Our mission is to bridge the justice gap in Nepal's informal sector through accessible technology</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card card-primary">
+                <div class="card-content">
+                    <h3>Who We Are</h3>
+                    <p><strong>LegalEase Nepal</strong> is an innovative legal tech initiative focused on making legal knowledge accessible to everyone, regardless of income or education level.</p>
+                    <p>Our team combines legal expertise with cutting-edge AI technology to create solutions that empower Nepal's small business owners and independent workers.</p>
                 </div>
-                
-                <h3>Features</h3>
-                <ul>
-                    <li>Instant responses to legal questions</li>
-                    <li>Information on various legal topics</li>
-                    <li>Chat history saved to your account</li>
-                    <li>Source citations for further research</li>
-                    <li>User-friendly interface</li>
-                </ul>
-                
-                <h3>Contact Us</h3>
-                <p>
-                    If you have any questions, feedback, or concerns about our Legal Chatbot, please contact us at:
-                    <a href="mailto:support@legalchatbot.example.com">support@legalchatbot.example.com</a>
-                </p>
+            </div>
+
+            <div class="card card-secondary">
+                <div class="card-content">
+                    <h3>The Problem We Solve</h3>
+                    <p>In Nepal, over 60% of the workforce operates in the informal sector with little to no access to affordable legal services.</p>
+                    <p>This leaves small vendors, freelancers, and micro-entrepreneurs vulnerable to exploitation, contract disputes, and legal challenges they don't understand.</p>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="section">
+        <div class="section-header">
+            <h2>Our Innovative Solution</h2>
+            <p>How LegalEase Nepal is transforming access to justice through technology</p>
+        </div>
+
+        <div class="feature-highlight">
+            <div class="feature-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+            <div class="feature-content">
+                <h3>AI-Powered Legal Assistant</h3>
+                <p>Our chatbot platform provides instant, reliable legal advice in simple language, available 24/7 through multiple channels including WhatsApp and web chat.</p>
+                <p>Key features include:</p>
+                <ul>
+                    <li>Multilingual support (Nepali and English)</li>
+                    <li>Document generation for contracts and legal forms</li>
+                    <li>Legal compliance checking</li>
+                    <li>Step-by-step guidance for common legal processes</li>
+                </ul>
+                <a href="#technology" class="btn btn-outline" style="margin-top: 20px;">See How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="section">
+        <div class="section-header">
+            <h2>Technology Stack</h2>
+            <p>The powerful tools behind our legal assistance platform</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card card-accent">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AI Technology" class="card-image">
+                <div class="card-content">
+                    <h3>AI & Machine Learning</h3>
+                    <p>Our chatbot uses advanced NLP models trained on Nepalese legal documents to provide accurate, context-aware responses.</p>
+                    <ul>
+                        <li>Custom-trained legal language models</li>
+                        <li>Continuous learning from user interactions</li>
+                        <li>Sentiment analysis for better assistance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card card-primary">
+                <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Development" class="card-image">
+                <div class="card-content">
+                    <h3>Development Stack</h3>
+                    <p>Built with modern, scalable technologies to ensure reliability and performance.</p>
+                    <ul>
+                        <li>Python/Django backend</li>
+                        <li>React.js frontend</li>
+                        <li>PostgreSQL database</li>
+                        <li>Docker containerization</li>
+                    </ul>
+                    <p><a href="https://github.com/LegalEaseNepal/legal-chatbot" target="_blank">View our GitHub repository</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="section">
+        <div class="section-header">
+            <h2>Our Impact</h2>
+            <p>Advancing the UN Sustainable Development Goals through innovation</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="card card-secondary">
+                <div class="card-content">
+                    <h3>Goal 8: Decent Work & Economic Growth</h3>
+                    <p>By providing legal protection to informal workers, we enable sustainable economic opportunities and help formalize Nepal's growing gig economy.</p>
+                    <p>Our platform helps users:</p>
+                    <ul>
+                        <li>Create legally sound contracts</li>
+                        <li>Understand labor rights</li>
+                        <li>Navigate business registration</li>
+                        <li>Resolve payment disputes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card card-primary">
+                <div class="card-content">
+                    <h3>Goal 16: Peace, Justice & Strong Institutions</h3>
+                    <p>We're reducing barriers to justice by making legal knowledge freely available and helping users navigate complex systems.</p>
+                    <p>Key contributions:</p>
+                    <ul>
+                        <li>Democratizing access to legal information</li>
+                        <li>Reducing case backlogs through alternative resolution</li>
+                        <li>Promoting legal literacy</li>
+                        <li>Supporting judicial system digitization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prototype Section -->
+    <section id="prototype" class="section">
+        <div class="section-header">
+            <h2>Product Development</h2>
+            <p>From concept to working prototype</p>
+        </div>
+
+        <div class="feature-highlight">
+            <div class="feature-content">
+                <h3>Prototype Journey</h3>
+                <p>Our initial prototype focused on core functionality to validate the concept with real users in Kathmandu's informal markets.</p>
+                <p>Key prototype features included:</p>
+                <ul>
+                    <li>Basic Q&A for common legal questions</li>
+                    <li>Simple contract generator</li>
+                    <li>User feedback system</li>
+                    <li>Basic Nepali language support</li>
+                </ul>
+                <p>After successful testing with 150+ users, we're now developing the full platform with expanded capabilities.</p>
+                <a href="#video" class="btn btn-outline" style="margin-top: 20px;">Watch Our Demo Video</a>
+            </div>
+            <div class="feature-image" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="section text-center">
+        <div class="section-header">
+            <h2>See LegalEase in Action</h2>
+            <p>Watch our demo video to understand how the platform works</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; background: #000; padding: 20px; border-radius: 12px;">
+            <img src="https://via.placeholder.com/800x450?text=LegalEase+Demo+Video" alt="Video placeholder" style="width: 100%; border-radius: 8px;">
+        </div>
+        <p style="margin-top: 20px;"><a href="https://youtu.be/your-demo-video" target="_blank" class="btn">Watch on YouTube</a></p>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <div class="section-header">
+            <h2>Our Team</h2>
+            <p>The passionate minds behind LegalEase Nepal</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="https://avatars.githubusercontent.com/u/youruser1?v=4" alt="Aarohishree Subedi" class="team-photo">
+                <div class="team-info">
+                    <h4>Aarohishree Subedi</h4>
+                    <p>Team Lead & Frontend Developer</p>
+                    <a href="https://www.linkedin.com/in/aarohishree-subedi" target="_blank" class="btn">Connect</a>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://avatars.githubusercontent.com/u/youruser2?v=4" alt="Priyanka Khatri" class="team-photo">
+                <div class="team-info">
+                    <h4>Priyanka Khatri</h4>
+                    <p>Backend Developer</p>
+                    <a href="https://www.linkedin.com/in/santosh-shrestha" target="_blank" class="btn">Connect</a>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://avatars.githubusercontent.com/u/youruser3?v=4" alt="Shreya Bhatta" class="team-photo">
+                <div class="team-info">
+                    <h4>Shreya Bhatta</h4>
+                    <p>AI Specialist</p>
+                    <a href="https://www.linkedin.com/in/sabina-rai" target="_blank" class="btn">Connect</a>
+                </div>
+            </div>
+            <div class="team-card">
+                <img src="https://avatars.githubusercontent.com/u/youruser4?v=4" alt="Shubha Laxmi Ghimire" class="team-photo">
+                <div class="team-info">
+                    <h4>Shubha Laxmi Ghimire</h4>
+                    <p>AI Specialist</p>
+                    <a href="https://www.linkedin.com/in/ramesh-karki" target="_blank" class="btn">Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>LegalEase Nepal</h4>
+                <p>Empowering Nepali entrepreneurs with legal knowledge through AI technology.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#solution">Our Solution</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="#team">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/LegalEaseNepal/legal-chatbot" target="_blank">GitHub</a></li>
+                    <li><a href="https://youtu.be/your-demo-video" target="_blank">Demo Video</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li>Kathmandu, Nepal</li>
+                    <li>contact@legaleasenepal.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Legal Chatbot. All rights reserved.</p>
+            <p>This is a demo application and not intended for professional legal advice.</p>
+        </div>
     </div>
-</div>
-{% endblock %}
+</footer>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<script>
+    // Mobile menu toggle functionality
+    document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+        const links = document.querySelector('.navbar-links');
+        const buttons = document.querySelector('.navbar-buttons');
+        
+        if (links.style.display === 'flex' || links.style.display === '') {
+            links.style.display = 'none';
+            buttons.style.display = 'none';
+        } else {
+            links.style.display = 'flex';
+            buttons.style.display = 'flex';
+            links.style.flexDirection = 'column';
+            buttons.style.flexDirection = 'column';
+            links.style.position = 'absolute';
+            links.style.top = '100%';
+            links.style.left = '0';
+            links.style.right = '0';
+            links.style.backgroundColor = 'white';
+            links.style.padding = '1rem';
+            links.style.gap = '1rem';
+            links.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+        }
+    });
+</script>
+
+</body>
+</html>
